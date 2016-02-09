@@ -206,17 +206,21 @@
 			th = (o.startHeight > 0 ? o.startHeight : $thumb.height());
 			tw = (o.startWidth > 0 ? o.startWidth : $thumb.width());
 			
-			$loader = $('<div></div>').attr('id',o.loader)
-							.appendTo('body')
-							.css({'position':'absolute',
-								'top':-9999,
-								'left':-9999,
-								'height':th,
-								'width':tw,
-								'opacity':o.loaderOpacity,
-								'display':'block',
-								'z-index':o.loaderZIndex,
-								'line-height':'0px'});
+			$loader = $('#' + o.loader);
+			if ($loader.length === 0) {
+			    $loader = $('<div></div>').attr('id', o.loader).appendTo('body');
+			}
+		    	$loader.css({
+                        	'position': 'absolute',
+                        	'top': -9999,
+                        	'left': -9999,
+                        	'height': th,
+                        	'width': tw,
+                        	'opacity': o.loaderOpacity,
+                        	'display': 'block',
+                        	'z-index': o.loaderZIndex,
+                        	'line-height': '0px'
+                    	});
 
 			adjustTop = getInt($loader.css('borderTopWidth'))+getInt($loader.css('paddingTop'))-getInt($thumb.css('borderTopWidth'))-getInt($thumb.css('paddingTop'));
 			adjustLeft = getInt($loader.css('borderLeftWidth'))+getInt($loader.css('paddingLeft'))-getInt($thumb.css('borderLeftWidth'))-getInt($thumb.css('paddingLeft'));
